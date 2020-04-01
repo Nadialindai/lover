@@ -7,23 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F31C2D92433D64D00F39387 /* Doja.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7F31C2D82433D64D00F39387 /* Doja.wav */; };
 		7F6EF6E62432D585000DF899 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6EF6E52432D585000DF899 /* AppDelegate.swift */; };
 		7F6EF6E82432D585000DF899 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6EF6E72432D585000DF899 /* SceneDelegate.swift */; };
-		7F6EF6EA2432D585000DF899 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6EF6E92432D585000DF899 /* ContentView.swift */; };
+		7F6EF6EA2432D585000DF899 /* Verses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6EF6E92432D585000DF899 /* Verses.swift */; };
 		7F6EF6EC2432D586000DF899 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F6EF6EB2432D586000DF899 /* Assets.xcassets */; };
 		7F6EF6EF2432D586000DF899 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F6EF6EE2432D586000DF899 /* Preview Assets.xcassets */; };
 		7F6EF6F22432D586000DF899 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F6EF6F02432D586000DF899 /* LaunchScreen.storyboard */; };
+		7F6EF6FA2432E17F000DF899 /* Quotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6EF6F92432E17F000DF899 /* Quotes.swift */; };
+		7FD3766F2433FFC200139EA5 /* QuoteRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD3766E2433FFC200139EA5 /* QuoteRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7F6EF6E22432D585000DF899 /* Filosoffi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filosoffi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F31C2D82433D64D00F39387 /* Doja.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Doja.wav; sourceTree = "<group>"; };
+		7F6EF6E22432D585000DF899 /* filosoffi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = filosoffi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F6EF6E52432D585000DF899 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F6EF6E72432D585000DF899 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7F6EF6E92432D585000DF899 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7F6EF6E92432D585000DF899 /* Verses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verses.swift; sourceTree = "<group>"; };
 		7F6EF6EB2432D586000DF899 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F6EF6EE2432D586000DF899 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7F6EF6F12432D586000DF899 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F6EF6F32432D586000DF899 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F6EF6F92432E17F000DF899 /* Quotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quotes.swift; sourceTree = "<group>"; };
+		7FD3766E2433FFC200139EA5 /* QuoteRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,9 +43,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F31C2DA2433D65200F39387 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				7F31C2D82433D64D00F39387 /* Doja.wav */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		7F6EF6D92432D585000DF899 = {
 			isa = PBXGroup;
 			children = (
+				7F31C2DA2433D65200F39387 /* Sound */,
 				7F6EF6E42432D585000DF899 /* Filosoffi */,
 				7F6EF6E32432D585000DF899 /* Products */,
 			);
@@ -48,7 +63,7 @@
 		7F6EF6E32432D585000DF899 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7F6EF6E22432D585000DF899 /* Filosoffi.app */,
+				7F6EF6E22432D585000DF899 /* filosoffi.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,7 +73,9 @@
 			children = (
 				7F6EF6E52432D585000DF899 /* AppDelegate.swift */,
 				7F6EF6E72432D585000DF899 /* SceneDelegate.swift */,
-				7F6EF6E92432D585000DF899 /* ContentView.swift */,
+				7F6EF6F92432E17F000DF899 /* Quotes.swift */,
+				7F6EF6E92432D585000DF899 /* Verses.swift */,
+				7FD3766E2433FFC200139EA5 /* QuoteRequest.swift */,
 				7F6EF6EB2432D586000DF899 /* Assets.xcassets */,
 				7F6EF6F02432D586000DF899 /* LaunchScreen.storyboard */,
 				7F6EF6F32432D586000DF899 /* Info.plist */,
@@ -92,7 +109,7 @@
 			);
 			name = Filosoffi;
 			productName = Filosoffi;
-			productReference = 7F6EF6E22432D585000DF899 /* Filosoffi.app */;
+			productReference = 7F6EF6E22432D585000DF899 /* filosoffi.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -136,6 +153,7 @@
 				7F6EF6F22432D586000DF899 /* LaunchScreen.storyboard in Resources */,
 				7F6EF6EF2432D586000DF899 /* Preview Assets.xcassets in Resources */,
 				7F6EF6EC2432D586000DF899 /* Assets.xcassets in Resources */,
+				7F31C2D92433D64D00F39387 /* Doja.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,9 +164,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F6EF6FA2432E17F000DF899 /* Quotes.swift in Sources */,
+				7FD3766F2433FFC200139EA5 /* QuoteRequest.swift in Sources */,
 				7F6EF6E62432D585000DF899 /* AppDelegate.swift in Sources */,
 				7F6EF6E82432D585000DF899 /* SceneDelegate.swift in Sources */,
-				7F6EF6EA2432D585000DF899 /* ContentView.swift in Sources */,
+				7F6EF6EA2432D585000DF899 /* Verses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,8 +313,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Filosoffi;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.filosoffi;
+				PRODUCT_NAME = filosoffi;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -313,8 +333,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Filosoffi;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.project.filosoffi;
+				PRODUCT_NAME = filosoffi;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
