@@ -8,7 +8,9 @@
 
 import Foundation
 import SwiftUI
+import Combine
 import AVFoundation
+import MediaPlayer
 
 var recordingSession: AVAudioSession!
 var audioRecorder: AVAudioRecorder!
@@ -153,10 +155,11 @@ struct DarkToggleStyle: ToggleStyle {
 
 struct ColorfulToggleStyle: ToggleStyle {
     
-    func makeBody(configuration: Self.Configuration) -> some View {
-
+    public func makeBody(configuration: Self.Configuration) -> some View {
+        HStack{
+        if configuration.isOn {
         Button(action: {
-            playMusic()
+            pauseMusic()
             configuration.isOn.toggle()
 
         }) {
@@ -167,104 +170,85 @@ struct ColorfulToggleStyle: ToggleStyle {
         }
         .background(
             ColorfulBackground(isHighlighted: configuration.isOn, shape: Circle())
-        )
+            )
+        } else {
+            Button(action: {
+                playMusic()
+                configuration.isOn.toggle()
+
+            }){
+
+                configuration.label
+                    .padding(30)
+                    .contentShape(Circle())
+            }
+            .background(
+                ColorfulBackground(isHighlighted: configuration.isOn, shape: Circle())
+            )
+        }
+        }
     }
 }
 
-struct Greeting {
-    var id = UUID()
-    var hi: String
-}
-
-
-
 struct ContentView: View {
     @State private var isToggled = false
-//[Greeting(hi: "Hi"), Greeting(hi: "Bonjour"), Greeting(hi: "Ciao")"]
-    @State private var textValue: Int = 0
+    @State private var textValue: Int = 1
     var audioPlayer = AVAudioPlayer()
 
-
-    var verses = ["Remember me with favor, O my God. - Nehemiah 13", "Shall we accept good from God, and not trouble? -Job 1:10"]
-
+    @ObservedObject private var poster = PostListViewModel()
+    
    var body: some View {
 
         ZStack {
             LinearGradient(Color.darkStart, Color.darkEnd)
+            VStack {
 
+                if poster.posts.count > 0 && textValue < poster.posts.count {
+//poster.posts[textValue].text
+                    Text("\(poster.posts[textValue].quote)").foregroundColor(Color(#colorLiteral(red: 0.08456841302, green: 0.2655478314, blue: 0.3678353148, alpha: 1)))
+                    .font(Font.body.lowercaseSmallCaps()).font(Font.custom("Work Sans Bold", size: 28)).padding(35)
+                    Text("\(poster.posts[textValue].text)").foregroundColor(Color(#colorLiteral(red: 0.08456841302, green: 0.2655478314, blue: 0.3678353148, alpha: 1))).transition(.opacity) .font(Font.body.lowercaseSmallCaps()).font(Font.custom("Work Sans Bold", size: 23)).multilineTextAlignment(.center).padding()
+                        .frame(width: 300, height: 360)
+                        .minimumScaleFactor(0.3)
+                            .background(
+                                ZStack{
+                                    Color(#colorLiteral(red: 0.9087617397, green: 0.9362817407, blue: 0.9985759854, alpha: 1))
 
-            VStack(spacing: CGFloat(40)) {
-
-                if textValue % 2 == 0 {
-                    Text("\(textValue)").foregroundColor(Color(#colorLiteral(red: 0.7626122832, green: 0.8218374252, blue: 0.9257722497, alpha: 1))).font(.largeTitle).transition(.opacity) .font(.system(size:20, weight: .semibold, design: .rounded))
-                    .frame(width: 330, height: 400)
-                        .background(
-                            ZStack{
-                                Color(#colorLiteral(red: 0.9087617397, green: 0.9362817407, blue: 0.9985759854, alpha: 1))
-
-                                RoundedRectangle(cornerRadius:16, style: .continuous)
-                                    .foregroundColor(.white)
-                                    .blur(radius: 4)
-                                    .offset(x: -8, y: -8)
-                                RoundedRectangle(cornerRadius:16, style: .continuous)
-                                    .fill(
-                                        LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.8891553283, green: 0.9166718125, blue: 0.9789679646, alpha: 1)), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                                )
-                                    .padding(2)
-                                    .blur(radius: 2)
-                            }
-                    )
-                        .clipShape(RoundedRectangle(cornerRadius:16, style: .continuous))
-                        .shadow(color: Color(#colorLiteral(red: 0.7626122832, green: 0.8218374252, blue: 0.9257722497, alpha: 1)), radius: 20, x: 20, y: 20)
-                        .shadow(color: Color(#colorLiteral(red: 0.9958658814, green: 1, blue: 0.9999271035, alpha: 1)), radius: 20, x: -20, y: -20)
-
-                }
-                if textValue % 2 == 1 {
-                    Text("\(textValue)").foregroundColor(Color(#colorLiteral(red: 0.7626122832, green: 0.8218374252, blue: 0.9257722497, alpha: 1))).font(.largeTitle).transition(.opacity)
-                        .font(.system(size:20, weight: .semibold, design: .rounded))
-                        .frame(width: 330, height: 400)
-                        .background(
-                            ZStack{
-                                Color(#colorLiteral(red: 0.9087617397, green: 0.9362817407, blue: 0.9985759854, alpha: 1))
-
-                                RoundedRectangle(cornerRadius:16, style: .continuous)
-                                    .foregroundColor(.white)
-                                    .blur(radius: 4)
-                                    .offset(x: -8, y: -8)
-                                RoundedRectangle(cornerRadius:16, style: .continuous)
-                                    .fill(
-                                        LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.8891553283, green: 0.9166718125, blue: 0.9789679646, alpha: 1)), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                                )
-                                    .padding(2)
-                                    .blur(radius: 2)
-                            }
-                    )
-                        .clipShape(RoundedRectangle(cornerRadius:16, style: .continuous))
-                        .shadow(color: Color(#colorLiteral(red: 0.7626122832, green: 0.8218374252, blue: 0.9257722497, alpha: 1)), radius: 20, x: 20, y: 20)
-                        .shadow(color: Color(#colorLiteral(red: 0.9958658814, green: 1, blue: 0.9999271035, alpha: 1)), radius: 20, x: -20, y: -20)
+                                    RoundedRectangle(cornerRadius:16, style: .continuous)
+                                        .foregroundColor(.white)
+                                        .blur(radius: 4)
+                                        .offset(x: -8, y: -8)
+                                    RoundedRectangle(cornerRadius:16, style: .continuous)
+                                        .fill(
+                                            LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.8891553283, green: 0.9166718125, blue: 0.9789679646, alpha: 1)), Color.white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                                    )
+                                        .padding(2)
+                                        .blur(radius: 2)
+                                }
+                        )
+                            .clipShape(RoundedRectangle(cornerRadius:16, style: .continuous))
+                            .shadow(color: Color(#colorLiteral(red: 0.7162396858, green: 0.8113685481, blue: 0.9257722497, alpha: 1)), radius: 20, x: 20, y: 20)
+                            .shadow(color: Color(#colorLiteral(red: 0.9958658814, green: 1, blue: 0.9999271035, alpha: 1)), radius: 20, x: -20, y: -20)
                 }
 
                 Button(action: {
                     withAnimation (.linear(duration: 0.5), {
                         self.textValue += 1
                     })
-                    pauseMusic()
                 })
                 {
                     Image(systemName: "heart.fill")
                         .foregroundColor(.white)
                     
                 }
-                .buttonStyle(ColorfulButtonStyle())
+                .buttonStyle(ColorfulButtonStyle()).padding()
 
-                Toggle(isOn: $isToggled) {
+                Toggle(isOn: self.$isToggled) {
                     Image(systemName: "heart.fill")
                         .foregroundColor(.white)
                 }
                 .toggleStyle(ColorfulToggleStyle())
-
-            }
-            
+               }
         }
         .edgesIgnoringSafeArea(.all)
 
@@ -273,18 +257,24 @@ struct ContentView: View {
     
 }
 
+
 var audioPlayer: AVAudioPlayer?
 
 func playMusic() {
 
-    let sound = Bundle.main.path(forResource: "Doja", ofType: "wav")
+    let musicPlayer = MPMusicPlayerApplicationController.applicationQueuePlayer
+    // Add a playback queue containing all songs on the device.
+    musicPlayer.setQueue(with: .songs())
+    // Start playing from the beginning of the queue.
+    musicPlayer.play()
+   /* let sound = Bundle.main.path(forResource: "Doja", ofType: "wav")
 
     do {
         audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound!))
         audioPlayer?.play()
     } catch {
         print("error")
-        }
+        }*/
 }
 
 func pauseMusic() {
@@ -304,3 +294,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
